@@ -1,0 +1,36 @@
+{
+    "name": "Nonogram Helper",
+    "description": "Helps you solve nonograms from puzzle-nonograms.com",
+    "version": "1.0",
+    "author": "Anonymous-Humanoid: https://github.com/Anonymous-Humanoid/",
+    "manifest_version": 3,
+    "permissions": [
+        "activeTab",
+		"scripting"
+    ],
+    "action": {
+		"default_popup": "popup.html",
+        "default_icon": {
+            "16": "/images/nonogram-16.png",
+            "32": "/images/nonogram-32.png",
+            "48": "/images/nonogram-48.png",
+            "128": "/images/nonogram-128.png"
+        }
+    },
+    "icons": {
+        "16": "/images/nonogram-16.png",
+		"32": "/images/nonogram-32.png",
+		"48": "/images/nonogram-48.png",
+		"128": "/images/nonogram-128.png"
+    },
+    "content_scripts": [
+        {
+            "js": [
+                "popup.js"
+            ],
+            "matches": [
+                "https://www.puzzle-nonograms.com/*"
+            ]
+        }
+    ]
+}
