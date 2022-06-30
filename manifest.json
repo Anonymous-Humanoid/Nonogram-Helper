@@ -1,7 +1,7 @@
 {
     "name": "Nonogram Helper",
     "description": "Helps you solve nonograms from puzzle-nonograms.com",
-    "version": "1.0",
+    "version": "1.01",
     "author": "Anonymous-Humanoid: https://github.com/Anonymous-Humanoid/",
     "manifest_version": 3,
     "permissions": [
