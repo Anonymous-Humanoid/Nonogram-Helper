@@ -67,14 +67,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 							values[i].split('.').forEach(e => arr.push(parseInt(e)));
 							values[i] = arr;
 						}
-						// Checking if grid is square before splitting list
-						// if (new URLSearchParams(window.location.search).get('size') === '6') { // TODO Works until page is refreshed
-						// if (values.length === 25*30) {
-						// 	[row_data, col_data] = [values.slice(0, 25), values.slice(25)]
-						// }
-						// else {
-						// 	[row_data, col_data] = [values.slice(0, values.length/2), values.slice(values.length/2)];
-						// }=
+						// Getting grid dimensions before dividing values
 						const divider = Game.currentState.cellStatus[0].length;
 						[row_data, col_data] = [values.slice(0, divider), values.slice(divider)];
 					}
@@ -100,7 +93,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 					}
 					out.push(new_row);
 				}
-				console.log(JSON.stringify(out)); // TODO TESTING
 				// Saving previous grid
 				Game.addCheckpoint();
 				updateCheckpoints();
