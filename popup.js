@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 		'target': {'tabId': tab.id},
 		'world': 'MAIN',
 		'function': () => {
+			// TESTING
 			const [FILLED, EMPTY] = '◆◇';
 
 			// Sums elements in array
@@ -12,6 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 				return arr.reduce((a,b) => a+b, 0);
 			}
 
+			// Compares elements for the maximum
 			function max(a, b) {
 				return a > b ? a : b;
 			}
@@ -58,22 +60,31 @@ document.addEventListener("DOMContentLoaded", async () => {
 			function getData() {
 				let row_data, col_data;
 				document.querySelectorAll('script').forEach(s => {
-					if (s.text.slice(1,45) === "var Game = {}; var Puzzle = {}; var task = '") {
+					if (s.text.length > 45 && s.text.slice(1,45) === "var Game = {}; var Puzzle = {}; var task = '") {
 						let values = s.text.slice(45).replace(/\'[\s\S]+/, '').split('/');
 						for (let i = 0; i < values.length; i++) {
 							let arr = [];
 							values[i].split('.').forEach(e => arr.push(parseInt(e)));
 							values[i] = arr;
 						}
-						[row_data, col_data] = [values.slice(0, values.length/2), values.slice(values.length/2)];
+						// Checking if grid is square before splitting list
+						// if (new URLSearchParams(window.location.search).get('size') === '6') { // TODO Works until page is refreshed
+						// if (values.length === 25*30) {
+						// 	[row_data, col_data] = [values.slice(0, 25), values.slice(25)]
+						// }
+						// else {
+						// 	[row_data, col_data] = [values.slice(0, values.length/2), values.slice(values.length/2)];
+						// }=
+						const divider = Game.currentState.cellStatus[0].length;
+						[row_data, col_data] = [values.slice(0, divider), values.slice(divider)];
 					}
 				});
 				return [row_data, col_data];
 			}
 
 			// TESTING Mathematically fills and prints the page's grid to the console
-				let [row_data, col_data] = getData();
 			function drawDataConsole() {
+				let [row_data, col_data] = getData();
 				drawConsole(row_data, col_data);
 			}
 			
@@ -89,6 +100,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 					}
 					out.push(new_row);
 				}
+				console.log(JSON.stringify(out)); // TODO TESTING
 				// Saving previous grid
 				Game.addCheckpoint();
 				updateCheckpoints();
